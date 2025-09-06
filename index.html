@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HealCare • Online Healthcare & Doctor Consulting</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container flex between center-v">
+      <div class="contact">
+        <span>📧 support@healcare.example</span>
+        <span>📞 +1 (555) 201‑0101</span>
+      </div>
+      <div class="cta">
+        <button class="btn small" id="openAppointmentTop">Make an Appointment</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <div class="container flex between center-v">
+      <div class="brand">HealCare</div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+      <ul class="navlinks" id="navlinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#doctors">Doctors</a></li>
+        <li><a href="#appointment">Appointments</a></li>
+        <li><a href="#symptoms">Symptom Checker</a></li>
+        <li><a href="#hospitals">Nearby Hospitals</a></li>
+        <li><a href="#reviews">Hospital Reviews</a></li>
+        <li><a href="#delivery">Medicine Delivery</a></li>
+        <li><a href="#history">Medical History</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container grid hero-grid">
+      <div>
+        <h1>Welcome to <span class="accent">HealCare</span></h1>
+        <p>Your all‑in‑one platform for online doctor consulting, appointment booking, medicine delivery, and more — including veterinary care.</p>
+        <div class="flex gap">
+          <button class="btn" id="openAppointmentHero">Book Appointment</button>
+          <a class="btn ghost" href="#symptoms">Check Symptoms</a>
+        </div>
+        <div class="badges">
+          <span class="badge">24/7 Chatbot</span>
+          <span class="badge">Voice Assistant</span>
+          <span class="badge">Vet Doctors</span>
+        </div>
+      </div>
+      <div class="hero-card pop">
+        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1200&auto=format&fit=crop" alt="Doctor holding stethoscope"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="features">
+    <div class="container grid cols-4">
+      <div class="feature pop">
+        <div class="icon">💬</div>
+        <h3>Online Consulting</h3>
+        <p>Video, audio, and chat consulting with certified doctors.</p>
+      </div>
+      <div class="feature pop">
+        <div class="icon">📅</div>
+        <h3>Instant Booking</h3>
+        <p>Find a doctor and reserve a timeslot in seconds.</p>
+      </div>
+      <div class="feature pop">
+        <div class="icon">🧭</div>
+        <h3>Nearby Hospitals</h3>
+        <p>Use your location to discover hospitals around you.</p>
+      </div>
+      <div class="feature pop">
+        <div class="icon">🐾</div>
+        <h3>Veterinary Care</h3>
+        <p>Specialized vets for your pet’s wellness.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctors -->
+  <section class="section" id="doctors">
+    <div class="container">
+      <h2>Meet our high‑quality & expert Doctors</h2>
+      <div class="grid cols-4" id="doctorGrid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment -->
+  <section class="section alt" id="appointment">
+    <div class="container grid cols-2">
+      <div>
+        <h2>Book an Appointment</h2>
+        <p>Fill the form to schedule a visit or tele‑consultation.</p>
+        <form id="appointmentForm" class="card">
+          <div class="grid cols-2">
+            <label>Full Name
+              <input required name="name" placeholder="Jane Doe"/>
+            </label>
+            <label>Email
+              <input required type="email" name="email" placeholder="jane@example.com"/>
+            </label>
+            <label>Department
+              <select name="department">
+                <option>General Medicine</option>
+                <option>Cardiology</option>
+                <option>Dermatology</option>
+                <option>Orthopedics</option>
+                <option>Pediatrics</option>
+                <option>Veterinary</option>
+              </select>
+            </label>
+            <label>Doctor
+              <select name="doctor" id="doctorSelect"></select>
+            </label>
+            <label>Date
+              <input type="date" name="date" required/>
+            </label>
+            <label>Time
+              <input type="time" name="time" required/>
+            </label>
+          </div>
+          <label>Reason for visit
+            <textarea name="reason" rows="3" placeholder="Short description"></textarea>
+          </label>
+          <button class="btn" type="submit">Reserve Slot</button>
+        </form>
+        <div class="card" id="myAppointments">
+          <h3>Your Appointments</h3>
+          <ul id="apptList" class="list"></ul>
+        </div>
+      </div>
+      <div>
+        <h3 class="mb8">Quick actions</h3>
+        <div class="grid cols-2">
+          <button class="tile pop" data-voice="book appointment">🎙️ Use Voice to Book</button>
+          <button class="tile pop" data-open="#symptoms">🧍 Symptom Checker</button>
+          <button class="tile pop" data-open="#hospitals">🧭 Find Hospitals</button>
+          <button class="tile pop" data-open="#delivery">🏪 Order Medicine</button>
+        </div>
+        <div class="assistant card">
+          <h3>Voice Assistant</h3>
+          <p>Say things like: <em>"book appointment", "open chatbot", "find hospitals", "check symptoms", "read my appointments"</em></p>
+          <div class="flex gap">
+            <button class="btn" id="startVoice">Start Listening</button>
+            <button class="btn ghost" id="stopVoice">Stop</button>
+          </div>
+          <div id="voiceStatus" class="muted mt8">Status: idle</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Symptom Checker -->
+  <section class="section" id="symptoms">
+    <div class="container grid cols-2">
+      <div>
+        <h2>Symptom Checker (Body Map)</h2>
+        <p>Select an area to see common symptoms and possible actions.</p>
+        <div class="bodymap card">
+          <!-- Simple SVG body -->
+          <svg viewBox="0 0 200 420" class="human">
+            <g class="area" data-area="Head">
+              <circle cx="100" cy="40" r="30"></circle>
+            </g>
+            <g class="area" data-area="Chest">
+              <rect x="70" y="80" width="60" height="70" rx="12"></rect>
+            </g>
+            <g class="area" data-area="Abdomen">
+              <rect x="75" y="150" width="50" height="70" rx="12"></rect>
+            </g>
+            <g class="area" data-area="Legs">
+              <rect x="80" y="220" width="15" height="120" rx="8"></rect>
+              <rect x="105" y="220" width="15" height="120" rx="8"></rect>
+            </g>
+            <g class="area" data-area="Arms">
+              <rect x="45" y="90" width="20" height="90" rx="8"></rect>
+              <rect x="135" y="90" width="20" height="90" rx="8"></rect>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <div class="card" id="symptomDetail">
+          <h3>Area: <span id="areaName">—</span></h3>
+          <div id="symptomOptions" class="chips"></div>
+          <div class="mt8">
+            <strong>Advice:</strong>
+            <p id="adviceText" class="mt4 muted">Tap a body area to begin.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nearby Hospitals -->
+  <section class="section alt" id="hospitals">
+    <div class="container">
+      <h2>Hospitals Near You</h2>
+      <p class="muted">We use your browser location to center the map. It loads OpenStreetMap in an embedded map.</p>
+      <div class="grid cols-2">
+        <div class="card">
+          <button class="btn" id="locateBtn">Use my location</button>
+          <div id="mapWrap" class="map-wrap mt8">
+            <iframe id="osmFrame" title="map" loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Notes</h3>
+          <ul class="list">
+            <li>Pan and zoom to explore hospitals around you.</li>
+            <li>Click markers on the map for place details (opens in OpenStreetMap).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="section" id="reviews">
+    <div class="container grid cols-2">
+      <div>
+        <h2>Hospital Reviews</h2>
+        <form id="reviewForm" class="card">
+          <label>Hospital Name
+            <input name="hospital" placeholder="City General Hospital" required/>
+          </label>
+          <label>Rating (1–5)
+            <input type="number" min="1" max="5" name="rating" required/>
+          </label>
+          <label>Your Review
+            <textarea name="text" rows="3" placeholder="Share your experience" required></textarea>
+          </label>
+          <button class="btn" type="submit">Submit Review</button>
+        </form>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Recent Reviews</h3>
+          <div id="reviewsList" class="reviews"></div>
+          <div class="mt8"><strong>Average rating:</strong> <span id="avgRating">—</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Medicine Delivery -->
+  <section class="section alt" id="delivery">
+    <div class="container grid cols-2">
+      <div>
+        <h2>Medicine Home Delivery</h2>
+        <form id="deliveryForm" class="card">
+          <div class="grid cols-2">
+            <label>Medicine
+              <input name="medicine" placeholder="Amoxicillin 500mg" required/>
+            </label>
+            <label>Quantity
+              <input type="number" name="qty" min="1" value="1" required/>
+            </label>
+            <label>Address
+              <input name="address" placeholder="123 Main St, City" required/>
+            </label>
+            <label>Phone
+              <input name="phone" placeholder="+1 555 0101" required/>
+            </label>
+          </div>
+          <button class="btn" type="submit">Add to Cart</button>
+        </form>
+        <div class="card">
+          <h3>Cart</h3>
+          <ul id="cartList" class="list"></ul>
+          <button class="btn ghost" id="checkoutBtn">Checkout (Demo)</button>
+          <div id="checkoutMsg" class="muted mt8"></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Popular Medicines</h3>
+          <div class="grid cols-3">
+            <button class="pill pop" data-med="Paracetamol 500mg">Paracetamol</button>
+            <button class="pill pop" data-med="Ibuprofen 200mg">Ibuprofen</button>
+            <button class="pill pop" data-med="Cetirizine 10mg">Cetirizine</button>
+            <button class="pill pop" data-med="Amoxicillin 500mg">Amoxicillin</button>
+            <button class="pill pop" data-med="ORS Pack">ORS</button>
+            <button class="pill pop" data-med="Omeprazole 20mg">Omeprazole</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Veterinary Doctors</h3>
+          <ul class="list" id="vetList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Medical History -->
+  <section class="section" id="history">
+    <div class="container grid cols-2">
+      <div>
+        <h2>Patient Medical History</h2>
+        <form id="historyForm" class="card">
+          <label>Known Conditions
+            <input name="conditions" placeholder="e.g., Hypertension, Diabetes"/>
+          </label>
+          <label>Allergies
+            <input name="allergies" placeholder="e.g., Penicillin"/>
+          </label>
+          <label>Current Medications
+            <textarea name="meds" rows="3" placeholder="Medication name — dosage — schedule"></textarea>
+          </label>
+          <button class="btn" type="submit">Save to Device</button>
+        </form>
+      </div>
+      <div>
+        <div class="card">
+          <h3>Saved Records (Local)</h3>
+          <pre id="historyOut" class="pre"></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container grid cols-4">
+      <div>
+        <div class="brand">HealCare</div>
+        <p class="muted">© <span id="year"></span> HealCare. For demo & educational purposes only.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul class="linklist">
+          <li><a href="#doctors">Doctors</a></li>
+          <li><a href="#appointment">Appointments</a></li>
+          <li><a href="#symptoms">Symptom Checker</a></li>
+          <li><a href="#hospitals">Nearby Hospitals</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul class="linklist">
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#delivery">Medicine Delivery</a></li>
+          <li><a href="#history">Medical History</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get Help</h4>
+        <p class="muted">In emergencies, call your local emergency number.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Chatbot -->
+  <div class="chatbot pop" id="chatbot">
+    <div class="chat-header">
+      <strong>HealCare Chatbot</strong>
+      <button id="closeChat">✕</button>
+    </div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-input">
+      <input id="chatInput" placeholder="Ask me anything… (e.g., timings, booking, symptoms)"/>
+      <button id="sendChat">Send</button>
+    </div>
+  </div>
+  <button class="fab" id="openChat" aria-label="Open chat">💬</button>
+
+  <script src="app.js"></script>
+</body>
+</html>
